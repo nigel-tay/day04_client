@@ -42,6 +42,14 @@ public class App
                 // While loop
                 while (!keyboardInput.equals("close")) {
                     keyboardInput = con.readLine("Enter a command plox: ");
+
+                    // Send message across through the communication tunnel
+                    dos.writeUTF(keyboardInput);
+                    dos.flush();
+
+                    // Receive message from server (response) and proces it
+                    msgReceived = dis.readUTF();
+                    System.out.println(msgReceived);
                 }
 
                 // Clsoe output stream
